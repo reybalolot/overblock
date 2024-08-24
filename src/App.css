@@ -1,0 +1,22 @@
+#root {
+  /* max-width: 1280px; */
+  /* margin: 0 auto; */
+  /* padding: 2rem; */
+  /* text-align: center; */
+  --color-primary: #0047ab;
+  --color: #1A181B;
+  --color-secondary: #dee7e7;
+  --color-tertiary: #f4faff;
+  --color-quarternary: #e6e6fa;
+}
+
+.titlebar {
+  color: var(--color-tertiary);
+  background-color: var(--color);
+}
+
+.sidebar {
+  width: clamp(20%, 30%, 40%);
+  height: 100dvh;
+  background-color: var(--color-primary);
+}
