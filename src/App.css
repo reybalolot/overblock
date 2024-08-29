@@ -3,11 +3,16 @@
   /* margin: 0 auto; */
   /* padding: 2rem; */
   /* text-align: center; */
-  --color-primary: #0047ab;
+  --color-primary: #1a181b;
   --color: #1A181B;
   --color-secondary: #dee7e7;
   --color-tertiary: #f4faff;
   --color-quarternary: #e6e6fa;
+
+  --bg-color: #3B383D;
+
+  color: #dee7e7;
+  font-weight: 600;
 }
 
 .titlebar {
@@ -16,7 +21,29 @@
 }
 
 .sidebar {
-  width: clamp(20%, 30%, 40%);
+  width: clamp(15%, 20%, 40%);
   height: 100dvh;
   background-color: var(--color-primary);
+}
+
+.sidebar-label {
+  padding: 3%
+}
+
+.sidebar-content {
+  margin: 5px 0px;
+  padding: 10px;
+  background-color: var(--bg-color);
+  border-radius: 5px;
+}
+
+ul {
+  list-style-type: none;
+}
+input {
+  margin-right: 10px;
+}
+
+li {
+  margin: 2% 1% 2% 0;
 }

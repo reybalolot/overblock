@@ -5,6 +5,7 @@
 --color-secondary: #dee7e7;
 --color-tertiary: #f4faff;
 --color-quarternary: #e6e6fa;
+--bg-color: #3B383D;
 }
 
 * {
@@ -14,5 +15,5 @@
 }
 
 body {
-  background-color: var(--color-secondary);
+  background-color: #3b3b3b;
 }
