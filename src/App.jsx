@@ -1,10 +1,17 @@
-import './App.css'
+import Sidebar from './components/SideBar';
+import './App.css';
 
 function App() {
 
   return (
     <>
-      <h1 className='text-center'>Hello Tailwind CSS</h1>
+       <div className="flex">
+            <Sidebar />
+            <div className="flex-1 p-10">
+                <h1 className="text-3xl font-bold">Main Content</h1>
+                <p className="mt-4">This is where your main content goes.</p>
+            </div>
+        </div>
     </>
   )
 }
