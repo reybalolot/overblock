@@ -1,5 +1,4 @@
-import { MdOutlineEditNote, MdChecklist, MdAttachFile } from "react-icons/md";
-import { FaCaretLeft, FaCaretRight } from "react-icons/fa6";
+import { MdEditDocument, MdDoneAll, MdOutlineCalendarMonth, MdFilePresent, MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import { useState } from "react";
 
 const SideBarNav = ({icon, label, isHidden}) => {
@@ -11,7 +10,7 @@ const SideBarNav = ({icon, label, isHidden}) => {
                     {icon}
                 </div>
                 <div className="flex-grow">
-                    <a href="#" className="block p-2 font-bold">{label}</a>
+                    <a href="#" className="block p-2 text-xs">{label}</a>
                 </div>
             </div>
         </>
@@ -30,22 +29,28 @@ const SideBar = () => {
         <>
             <div className="anim-300" style={{width:toggle?'200px':'0px'}}>
             <div className="flex flex-col top-0 h-screen bg-secondary text-white">
-                <div className="text-2xl font-bold px-4 p-1">To Do</div>
+                <div className="text-xl font-bold pt-2 px-4 p-1" style={{display:toggle?'block':'none'}}>To Do</div>
                 <div className="flex-1 px-2 py-2 space-y-2">
-                    <SideBarNav icon={<MdOutlineEditNote size={'20'}/>} label={'NOTES'} isHidden={toggle}/>
-                    <SideBarNav icon={<MdChecklist size={'20'}/>} label={'CHECKLIST'} isHidden={toggle}/>
-                    <SideBarNav icon={<MdAttachFile size={'20'}/>} label={'ATTACHMENTS'} isHidden={toggle}/>
+                    <SideBarNav icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/>
+                    <SideBarNav icon={<MdEditDocument size={'20'}/>} label={'Notes'} isHidden={toggle}/>
+                    <SideBarNav icon={<MdDoneAll size={'20'}/>} label={'Checklist'} isHidden={toggle}/>
+                    <SideBarNav icon={<MdFilePresent size={'20'}/>} label={'Attachments'} isHidden={toggle}/>
                 </div>
             </div>
             </div>
 
             <div className="h-screen bg-secondary text-white">
-                <div className="w-full p-3 hover:bg-primary anim-300" onClick={() => toggleSideBar()}>
-                    {!toggle ? <FaCaretRight className="anim" /> : <FaCaretLeft className="anim"/>}
+                <div className="w-full rounded-md m-1 p-2 hover:bg-primary anim-300" onClick={() => toggleSideBar()}>
+                    {!toggle ? <MdKeyboardDoubleArrowRight className="anim" /> : <MdKeyboardDoubleArrowLeft className="anim"/>}
                 </div>
-                <div className="h-auto flex justify-center">
-                    😊
-                </div>
+                <div className="h-auto flex justify-center text-xs p-2">24</div>
+                <div className="h-auto flex justify-center text-xs p-2">23</div>
+                <div className="h-auto flex justify-center text-xs p-2">22</div>
+                <div className="h-auto flex justify-center text-xs p-2">21</div>
+                <div className="h-auto flex justify-center text-xs p-2">20</div>
+                <div className="h-auto flex justify-center text-xs p-2">19</div>
+                <div className="h-auto flex justify-center text-xs p-2">18</div>
+                <div className="h-auto flex justify-center text-xs p-2">17</div>
             </div>
         </>
     );
