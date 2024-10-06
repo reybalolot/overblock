@@ -6,4 +6,7 @@
     .anim-300 {
         @apply transition-all duration-300 ease-linear;
     }
+    .anim-500 {
+        @apply transition-all duration-500 ease-linear;
+    }
 }

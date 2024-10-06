@@ -1,24 +1,26 @@
-import { MdEditDocument, MdDoneAll, MdOutlineCalendarMonth, MdFilePresent, MdKeyboardDoubleArrowRight, MdKeyboardDoubleArrowLeft } from "react-icons/md";
+import { MdEditDocument, MdDoneAll, MdOutlineCalendarMonth, MdFilePresent, MdKeyboardArrowRight, MdKeyboardArrowLeft } from "react-icons/md";
 import { useState } from "react";
 
 const SideBarNav = ({icon, label, isHidden}) => {
 
     return (
         <>
-            <div className="sidebar-icon flex flex-row hover:bg-primary rounded-md" style={{display:isHidden?'flex':'none'}}>
-                <div className="flex-shrink flex items-center justify-center px-2">
+        <a href="" className="flex text-sm">
+            <div className="sidebar-icon w-full flex flex-row rounded-md hover:bg-secondary ">
+                <div className="flex-shrink flex items-center justify-center p-2 rounded-md hover:bg-secondary anim-300">
                     {icon}
                 </div>
-                <div className="flex-grow">
-                    <a href="#" className="block p-2 text-xs">{label}</a>
+                <div className="flex flex-grow items-center text-xs anim-500 p-1 origin-left" style={{scale:isHidden?'1':'0'}}>
+                    {label}
                 </div>
             </div>
+        </a>
         </>
     )
 }
 
 const SideBar = () => {
-    const [toggle, setToggle] = useState(true);
+    const [toggle, setToggle] = useState(false);
 
     function toggleSideBar() {
         if (toggle) setToggle(false);
@@ -27,31 +29,22 @@ const SideBar = () => {
 
     return (
         <>
-            <div className="anim-300" style={{width:toggle?'200px':'0px'}}>
-            <div className="flex flex-col top-0 h-screen bg-secondary text-white">
-                <div className="text-xl font-bold pt-2 px-4 p-1" style={{display:toggle?'block':'none'}}>To Do</div>
-                <div className="flex-1 px-2 py-2 space-y-2">
+            <div className="bg-primary text-white rounded-md m-2 anim-300">
+                <button className="flex h-8 text-xs font-bold text-center items-center py-3 px-1 rounded-md select-none hover:bg-secondary anim-300"
+                    style={{margin:toggle?'.5rem .5rem':'.5rem 0.3rem'}}
+                    // , width:toggle?'12.5rem':'auto'
+                    onClick={() => toggleSideBar()}>
+                    TO DO
+                </button>
+                <div className="border mx-3"></div>
+                <div className="flex flex-col flex-grow space-y-2 m-2 anim-300" style={{width:toggle?'200px':'0px'}}>
                     <SideBarNav icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/>
                     <SideBarNav icon={<MdEditDocument size={'20'}/>} label={'Notes'} isHidden={toggle}/>
                     <SideBarNav icon={<MdDoneAll size={'20'}/>} label={'Checklist'} isHidden={toggle}/>
                     <SideBarNav icon={<MdFilePresent size={'20'}/>} label={'Attachments'} isHidden={toggle}/>
                 </div>
             </div>
-            </div>
 
-            <div className="h-screen bg-secondary text-white">
-                <div className="w-full rounded-md m-1 p-2 hover:bg-primary anim-300" onClick={() => toggleSideBar()}>
-                    {!toggle ? <MdKeyboardDoubleArrowRight className="anim" /> : <MdKeyboardDoubleArrowLeft className="anim"/>}
-                </div>
-                <div className="h-auto flex justify-center text-xs p-2">24</div>
-                <div className="h-auto flex justify-center text-xs p-2">23</div>
-                <div className="h-auto flex justify-center text-xs p-2">22</div>
-                <div className="h-auto flex justify-center text-xs p-2">21</div>
-                <div className="h-auto flex justify-center text-xs p-2">20</div>
-                <div className="h-auto flex justify-center text-xs p-2">19</div>
-                <div className="h-auto flex justify-center text-xs p-2">18</div>
-                <div className="h-auto flex justify-center text-xs p-2">17</div>
-            </div>
         </>
     );
 };

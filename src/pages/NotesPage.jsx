@@ -4,7 +4,7 @@ const NotesPage = () => {
 
     return (
         <>
-        <div className="w-dvw min-h-full h-dvh overflow-y-scroll bg-slate-950">
+        <div className="w-dvw min-h-full h-dvh overflow-y-scroll ">
             <div className="p-3 columns-[300px] gap-3 min-h-full">
                 <NoteCard imgLink="https://i.pinimg.com/originals/0a/e3/2c/0ae32c445c6de9e01e89cc8119e1360a.jpg"/>
                 <NoteCard imgLink="https://i.pinimg.com/originals/c0/c0/59/c0c059bc1dd19766620873dd77821629.jpg"/>

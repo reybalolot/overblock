@@ -6,8 +6,8 @@ function App() {
 
   return (
     <>
-       <div className="flex">
-            <SideBar />
+       <div className="flex bg-slate-950">
+            <SideBar/>
             <NotesPage/>
         </div>
     </>
