@@ -1,3 +1,9 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+    .anim-300 {
+        @apply transition-all duration-300 ease-linear;
+    }
+}
