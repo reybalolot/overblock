@@ -1,14 +1,16 @@
 import SideBar from './components/SideBar';
-import NotesPage from './pages/NotesPage';
+import DailyPage from './pages/DailyPage';
+// import NotesPage from './pages/NotesPage';
 import './App.css';
 
 function App() {
 
   return (
     <>
-       <div className="flex bg-slate-950">
+       <div className="flex bg-secondary">
             <SideBar/>
-            <NotesPage/>
+            <DailyPage/>
+            {/* <NotesPage/> */}
         </div>
     </>
   )
