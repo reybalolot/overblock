@@ -1,8 +1,8 @@
 const HourRule = () => {
     return (
         <>
-        <div className="h-full me-2 bg-primary rounded-md text-white">
-            <div className="w-4 h-52 text-center text-xs py-1 mx-1 border-t border-white">01</div>
+        <div className="h-full me-2 bg-primary text-white">
+            <div className="w-4 h-52 text-center text-xs py-1 mx-1">01</div>
             <div className="w-4 h-52 text-center text-xs py-1 mx-1 border-t border-white">02</div>
             <div className="w-4 h-52 text-center text-xs py-1 mx-1 border-t border-white">03</div>
             <div className="w-4 h-52 text-center text-xs py-1 mx-1 border-t border-white">04</div>

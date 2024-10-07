@@ -7,7 +7,7 @@ function App() {
 
   return (
     <>
-       <div className="flex bg-secondary">
+       <div className="w-dvh h-dvh flex bg-secondary">
             <SideBar/>
             <DailyPage/>
             {/* <NotesPage/> */}
