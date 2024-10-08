@@ -1,32 +1,9 @@
-const DailyCard = () => {
+const DailyCard = ({content, colStart}) => {
     return (
         <>
-            <div className="w-full flex overflow-x-scroll">
-                <div className="max-w-pros h-52 text-justify text-white text-sm ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt omnis, fugiat, illum dicta velit modi repellendus consequuntur pariatur corporis nobis aliquid optio dolore ducimus reiciendis cum nostrum officia inventore excepturi?
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                </div>
-                <div className="max-w-proe h-52 text-justify text-white text-sm ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt omnis, fugiat, illum dicta velit modi repellendus consequuntur pariatur corporis nobis aliquid optio dolore ducimus reiciendis cum nostrum officia inventore excepturi?
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                </div>
-                <div className="max-w-pros h-52 text-justify text-white text-sm ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt omnis, fugiat, illum dicta velit modi repellendus consequuntur pariatur corporis nobis aliquid optio dolore ducimus reiciendis cum nostrum officia inventore excepturi?
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                </div>
-                <div className="max-w-pros h-52 text-justify text-white text-sm ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt omnis, fugiat, illum dicta velit modi repellendus consequuntur pariatur corporis nobis aliquid optio dolore ducimus reiciendis cum nostrum officia inventore excepturi?
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                </div>
-                <div className="max-w-pros h-52 text-justify text-white text-sm ">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt omnis, fugiat, illum dicta velit modi repellendus consequuntur pariatur corporis nobis aliquid optio dolore ducimus reiciendis cum nostrum officia inventore excepturi?
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                    Lorem, ipsum dolor sit amet consectetur adipisicing elit. Perferendis officiis officia corporis suscipit veniam explicabo necessitatibus deserunt accusamus aspernatur, sed laborum aliquid odio? Ipsam quidem explicabo voluptatum vitae nobis eligendi.
-                </div>
+            <div className="max-w-pros h-[12rem] py-1 text-center text-white text-3xl rounded overflow-hidden border border-gray-500 hover:bg-slate-500 anim-300"
+                style={{gridColumnStart:colStart}}>
+                {content}
             </div>
         </>
     )
