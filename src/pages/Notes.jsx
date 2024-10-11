@@ -1,6 +1,6 @@
 import NoteCard from "../components/NoteCard";
 
-const NotesPage = () => {
+const Notes = () => {
 
     return (
         <>
@@ -31,4 +31,4 @@ const NotesPage = () => {
     )
 }
 
-export default NotesPage;
+export default Notes;

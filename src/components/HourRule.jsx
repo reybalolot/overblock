@@ -4,7 +4,7 @@ const HourRule = () => {
     for (let i = 0; i < 24; i++) {
         let hour = 0;
         labelArray.push(
-            <div className="h-[12rem] px-1 border-b border-r border-slate-400/[.05] text-center text-sm snap-start">
+            <div className="h-[12rem] px-1 border-b border-r border-slate-400/[.05] text-center text-sm snap-start" key={i}>
                 {i < 10 ? `0${i}`: hour + i}
             </div>
         )

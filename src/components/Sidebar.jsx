@@ -1,5 +1,8 @@
-import { MdEditDocument, MdDoneAll, MdOutlineCalendarMonth, MdFilePresent, MdKeyboardArrowRight, MdKeyboardArrowLeft, MdOutlineStar  } from "react-icons/md";
 import { useState } from "react";
+import { Link } from "react-router-dom";
+import { MdEditDocument, MdDoneAll, MdOutlineCalendarMonth, MdFilePresent, MdOutlineStar  } from "react-icons/md";
+
+
 
 const SideBarNav = ({icon, label, isHidden}) => {
 
@@ -38,11 +41,11 @@ const SideBar = () => {
                 </button>
                 <div className="border mx-3"></div>
                 <div className="flex flex-col flex-grow space-y-2 m-2 anim-300" style={{width:toggle?'200px':'0px'}}>
-                    <SideBarNav icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/>
-                    <SideBarNav icon={<MdOutlineStar  size={'20'}/>} label={'Daily'} isHidden={toggle}/>
-                    <SideBarNav icon={<MdEditDocument size={'20'}/>} label={'Notes'} isHidden={toggle}/>
-                    <SideBarNav icon={<MdDoneAll size={'20'}/>} label={'Checklist'} isHidden={toggle}/>
-                    <SideBarNav icon={<MdFilePresent size={'20'}/>} label={'Attachments'} isHidden={toggle}/>
+                    <SideBarNav as Link to={'/calendar'} icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/>
+                    <SideBarNav as Link to={'/daily'}    icon={<MdOutlineStar  size={'20'}/>} label={'Daily'} isHidden={toggle}/>
+                    <SideBarNav as Link to={'/notes'}    icon={<MdEditDocument size={'20'}/>} label={'Notes'} isHidden={toggle}/>
+                    <SideBarNav as Link to={'/checklist'}    icon={<MdDoneAll size={'20'}/>} label={'Checklist'} isHidden={toggle}/>
+                    <SideBarNav as Link to={'/attachment'}    icon={<MdFilePresent size={'20'}/>} label={'Attachments'} isHidden={toggle}/>
                 </div>
             </div>
 
