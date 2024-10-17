@@ -26,7 +26,7 @@ const Trash = ({ setCards }) => {
       onDrop={handleDragEnd}
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
-      className={`md:grid h-auto w-auto shrink-0 place-content-center rounded text-3xl ${
+      className={`flex h-auto w-auto shrink-0 place-content-center items-center rounded text-3xl ${
         active
           ? "bg-red-800/20 text-red-500"
           : "bg-neutral-500/5 text-neutral-500"

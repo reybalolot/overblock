@@ -9,8 +9,8 @@ const SideBarNav = ({icon, link, label, isHidden}) => {
     return (
         <>
         <Link to={link} className="flex text-sm">
-            <div className="sidebar-icon w-full flex flex-row rounded-md text-white hover:bg-accent anim-300">
-                <div className="flex-shrink flex items-center justify-center p-1 m-1 md:p-2 md:m-2 rounded-md hover:bg-accent hover:scale-110 anim-300">
+            <div className={`sidebar-icon w-full flex flex-row mx-2 rounded text-white hover:bg-accent anim-300 ${isHidden ? 'mx-2' : 'mx-0'}`}>
+                <div className={`flex-shrink flex items-center justify-center p-1 mx-1 md:p-2 md:mx-2 rounded anim-300 ${!isHidden ? 'hover:bg-accent hover:scale-110' : ''}`}>
                     {icon}
                 </div>
                 <div className="flex flex-grow items-center text-xs anim-500 p-1 origin-left" style={{scale:isHidden?'1':'0'}}>
@@ -32,14 +32,14 @@ const SideBar = () => {
 
     return (
         <>
-            <div className="bg-primary rounded-md m-2 anim-300 border border-secondary w-min md:w-auto">
-                <button className="flex h-8 text-xs  text-white font-bold text-center items-center py-3 px-1 rounded-md select-none hover:bg-accent anim-300"
+            <div className="bg-primary rounded m-2 anim-300 border border-secondary w-min md:w-auto">
+                <button className="flex h-8 text-xs  text-white font-bold text-center items-center py-3 px-1 rounded select-none hover:bg-accent anim-300"
                     style={{margin:toggle?'.5rem .5rem':'.5rem 0.3rem'}}
                     // , width:toggle?'12.5rem':'auto'
                     onClick={() => toggleSideBar()}>
                     TO DO
                 </button>
-                <div className="border mx-3"></div>
+                <div className="border mx-3 mb-2"></div>
                 <div className="flex flex-col flex-grow space-y-2 m-0 anim-300" style={{width:toggle?'200px':'0px'}}>
                     <SideBarNav link={'/calendar'} icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/>
                     <SideBarNav link={'/daily'} icon={<MdOutlineStar  size={'20'}/>} label={'Daily'} isHidden={toggle}/>

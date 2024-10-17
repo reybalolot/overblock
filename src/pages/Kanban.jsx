@@ -6,39 +6,47 @@ const Kanban = () => {
   const [cards, setCards] = useState(DEFAULT_CARDS);
 
   return (
-    <div className="h-screen w-full bg-neutral-900 text-neutral-50">
-        <div className="grid xl:grid-cols-5 md:grid-cols-4 grid-cols-1 h-full w-full gap-3  overflow-y-scroll p-5">
-          <Column
-            title="Notes"
-            column="notes"
-            headingColor="text-neutral-500"
-            cards={cards}
-            setCards={setCards}
-            />
-          <Column
-            title="TODO"
-            column="todo"
-            headingColor="text-yellow-200"
-            cards={cards}
-            setCards={setCards}
-            />
-          <Column
-            title="In progress"
-            column="doing"
-            headingColor="text-blue-200"
-            cards={cards}
-            setCards={setCards}
-            />
-          <Column
-            title="Complete"
-            column="done"
-            headingColor="text-emerald-200"
-            cards={cards}
-            setCards={setCards}
-            />
-          <Trash className="h-1/6" setCards={setCards} />
+    <>
+      <div className="h-screen w-full bg-neutral-900 text-neutral-50">
+        <div className="p-2 m-2 text-accent font-bold bg-primary rounded">
+          Thursday, October 17, 2024
         </div>
-    </div>
+        <hr />
+        <div className="h-auto">
+          <div className="grid xl:grid-cols-5 md:grid-cols-4 grid-cols-1 h-full w-full gap-3  overflow-y-scroll p-5 pt-3">
+            <Column
+              title="Notes"
+              column="notes"
+              headingColor="text-neutral-500"
+              cards={cards}
+              setCards={setCards}
+              />
+            <Column
+              title="TODO"
+              column="todo"
+              headingColor="text-yellow-200"
+              cards={cards}
+              setCards={setCards}
+              />
+            <Column
+              title="In progress"
+              column="doing"
+              headingColor="text-blue-200"
+              cards={cards}
+              setCards={setCards}
+              />
+            <Column
+              title="Complete"
+              column="done"
+              headingColor="text-emerald-200"
+              cards={cards}
+              setCards={setCards}
+              />
+            <Trash className="md:grid md:grid-cols-1" setCards={setCards} />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
 
@@ -180,7 +188,7 @@ const DEFAULT_CARDS = [
   { title: "SOX compliance checklist", id: "2", column: "notes" },
   { title: "[SPIKE] Migrate to Azure", id: "3", column: "notes" },
   { title: "Document Notifications service", id: "4", column: "notes" },
-  { title: "Document Notifications service serviceserviceserviceserviceserviceserviceserviceserviceserviceserviceservice", id: "11", column: "notes" },
+  { title: "Document Notifications service serviceserviceserviceserviceserviceser viceserviceserviceserviceserviceservice", id: "11", column: "notes" },
   { title: "Document Notifications service", id: "12", column: "notes" },
   { title: "Document Notifications service", id: "13", column: "notes" },
   // TODO
