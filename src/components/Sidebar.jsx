@@ -10,7 +10,7 @@ const SideBarNav = ({icon, link, label, isHidden}) => {
         <>
         <Link to={link} className="flex text-sm">
             <div className={`sidebar-icon w-full flex flex-row mx-2 rounded text-white hover:bg-accent anim-300 ${isHidden ? 'mx-2' : 'mx-0'}`}>
-                <div className={`flex-shrink flex items-center justify-center p-1 mx-1 md:p-2 md:mx-2 rounded anim-300 ${!isHidden ? 'hover:bg-accent hover:scale-110' : ''}`}>
+                <div className={`flex-shrink flex items-center justify-center p-0 md:p-2 rounded anim-300 ${!isHidden ? 'hover:bg-accent hover:scale-110' : ''}`}>
                     {icon}
                 </div>
                 <div className="flex flex-grow items-center text-xs anim-500 p-1 origin-left" style={{scale:isHidden?'1':'0'}}>
