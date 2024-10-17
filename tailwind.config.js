@@ -9,7 +9,9 @@ export default {
     extend: {
       colors: {
         accent: '#EF4444',
-        primary: '#1A181B',
+        accent2: '#EF4444',
+        primary: '#272727',
+        // primary: '#1A181B',
         // secondary: '#3B383D',
         // secondary: '#fdfffc',
         // secondary: '#023550',
