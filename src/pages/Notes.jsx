@@ -1,34 +1,132 @@
-import NoteCard from "../components/NoteCard";
+import { useEffect, useState, useRef } from "react";
+// import NoteCard from "../components/NoteCard";
+import { Card } from "../components/notes/Card.jsx";
+import { motion } from "framer-motion";
+import { FaPlus } from "react-icons/fa6";
 
 const Notes = () => {
+    const [cards, setCards] = useState(DEFAULT_NOTES);
 
     return (
         <>
-        <div className="w-dvw min-h-full h-dvh overflow-y-scroll ">
-            <div className="p-3 columns-[300px] gap-3 min-h-full">
-                <NoteCard imgLink="https://i.pinimg.com/originals/0a/e3/2c/0ae32c445c6de9e01e89cc8119e1360a.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/c0/c0/59/c0c059bc1dd19766620873dd77821629.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/29/a7/a6/29a7a6c22a0449cd895f921f2ad5ae0c.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/7f/84/21/7f84213cb0b49c5f579a85e52765ae8c.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/4a/5c/83/4a5c83718d375db897f79d7c796252f7.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/1f/6a/b3/1f6ab3ed7c283379fe4ccc02fbd8ae9e.png"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/88/b3/f0/88b3f07f8ed986b0e1d8ef790adbc1f0.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/79/35/7d/79357d9bb4c7e55e0d34ae9025345779.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/45/eb/74/45eb74f78500132764b71b02b050d1ad.jpg"/>
-
-                <NoteCard imgLink="https://i.pinimg.com/originals/0a/e3/2c/0ae32c445c6de9e01e89cc8119e1360a.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/c0/c0/59/c0c059bc1dd19766620873dd77821629.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/29/a7/a6/29a7a6c22a0449cd895f921f2ad5ae0c.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/7f/84/21/7f84213cb0b49c5f579a85e52765ae8c.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/4a/5c/83/4a5c83718d375db897f79d7c796252f7.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/1f/6a/b3/1f6ab3ed7c283379fe4ccc02fbd8ae9e.png"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/88/b3/f0/88b3f07f8ed986b0e1d8ef790adbc1f0.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/79/35/7d/79357d9bb4c7e55e0d34ae9025345779.jpg"/>
-                <NoteCard imgLink="https://i.pinimg.com/originals/45/eb/74/45eb74f78500132764b71b02b050d1ad.jpg"/>
-            </div>
+        <div className="w-dvw h-full overflow-y-scroll">
+          <div className="m-2 p-2 font-bold flex">
+            <div className="text-white">Notes</div>
+            <div className="text-white mx-2">|</div>
+          </div>
+          <hr className="mx-3"/>
+          <div className="p-3 columns-[300px] gap-2 h-auto">
+            <AddNote setCards={setCards}/>
+              { cards.map((c) => {
+                return <Card key={c.id} {...c}/>
+              })
+              }
+          </div>
         </div>
         </>
     )
 }
+
+const AddNote = ({ setCards }) => {
+  const [title, setTitle] = useState("");
+  const [body, setBody] = useState("");
+  const [adding, setAdding] = useState(false);
+  const textAreaRef = useRef(null);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (!body.trim().length) return;
+
+    const newCard = {
+      title: title.trim(),
+      body: body.trim(),
+      id: Math.random().toString(),
+    };
+
+    setCards((pv) => [...pv, newCard]);
+
+    setAdding(false);
+    setBody('');
+  };
+
+  useEffect(() => {
+    const textarea = textAreaRef.current;
+    const autoResize = () => {
+      textarea.style.height = 'auto';
+      textarea.style.height = `${textarea.scrollHeight}px`;
+    }
+    if (adding) {
+      textarea.addEventListener('input', autoResize);
+    }
+  },[adding])
+
+  return (
+    <>
+      {adding ? (
+        <div>
+        <motion.form layout onSubmit={handleSubmit} className="">
+          <div className="text-sm border border-neutral-100 rounded p-2">
+             <input
+                onChange={(e) => setTitle(e.target.value || ' ')}
+                placeholder="Add title"
+                className="w-full bg-transparent mt-2 text-neutral-50 placeholder-gray-600 focus:outline-0"
+                />
+            <textarea
+                ref={textAreaRef}
+                onChange={(e) => setBody(e.target.value)}
+                autoFocus
+                placeholder="Add new note..."
+                className="w-full bg-transparent mt-2 text-neutral-50 placeholder-gray-600 focus:outline-0 resize-none"
+                />
+            </div>
+            <div className="mt-1.5 flex items-center justify-end gap-1.5 mb-4">
+              <button
+                type="submit"
+                className="flex items-center gap-1.5 rounded bg-green-900 px-3 py-1.5 text-xs text-neutral-950 transition-colors hover:text-neutral-300 hover:bg-green-700"
+                >
+                <span>Save</span>
+              </button>
+              <button
+                onClick={() => setAdding(false)}
+                className="px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
+                >
+                Close
+              </button>
+            </div>
+        </motion.form>
+        </div>
+       ) : (
+       <motion.button
+          layout
+          onClick={() => setAdding(true)}
+          className="flex w-full items-center gap-2.5 px-3 p-3 mb-2 text-xs text-green-400 transition-colors border border-green-600 rounded hover:border-green-700 hover:bg-green-900 hover:text-white"
+        >
+          <span>Add note</span>
+          <FaPlus />
+        </motion.button>
+       )}
+    </>
+  );
+}
+
+const DEFAULT_NOTES = [
+    {id: '1', title: 'Note title', body: 'This is the content on a note'},
+    {id: '2', title: 'Note title', body: 'This is the content'},
+    {id: '3', title: 'Note title', body: 'This is the content'},
+    {id: '4', title: 'Note title', body: 'This is the content'},
+    {id: '5', title: 'Note title', body: 'This is the content'},
+    {id: '6', title: 'Note title', body: 'This is the content'},
+    {id: '7', title: 'Note title', body: 'This is the content'},
+    {id: '8', title: 'Note title', body: 'This is the content'},
+    {id: '9', title: 'Note title', body: 'This is the content'},
+    {id: '10', title: 'Note title', body: 'This is the content'},
+    {id: '11', title: 'Note title', body: 'This is the content'},
+    {id: '12', title: 'Note title', body: 'This is the content'},
+    {id: '13', title: 'Note title', body: 'This is the content'},
+    {id: '14', title: 'Note title', body: 'This is the content'},
+    {id: '15', title: 'Note title', body: 'This is the content'},
+    {id: '16', title: 'Note title', body: 'This is the content'},
+]
 
 export default Notes;

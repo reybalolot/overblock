@@ -13,7 +13,7 @@ export const Card = ({ title, id, column, handleDragStart }) => {
         onDragStart={(e) => handleDragStart(e, { title, id, column })}
         className="cursor-grab md:w-auto rounded border border-neutral-700 bg-neutral-800 p-2 active:cursor-grabbing"
         >
-        <p className="text-sm text-neutral-100 leading-7">{title}</p>
+        <p className="text-sm text-neutral-100 leading-7 whitespace-normal">{title}</p>
       </motion.div>
     </>
   );
@@ -57,8 +57,9 @@ export const AddCard = ({ column, setCards }) => {
           <textarea
             onChange={(e) => setText(e.target.value)}
             autoFocus
+            maxLength={100}
             placeholder="Add new task..."
-            className="w-full rounded border border-accent-light bg-accent p-3 text-sm text-neutral-50 placeholder-violet-300 focus:outline-0"
+            className="w-full h-auto rounded border border-neutral-700 bg-transparent p-3 text-sm text-neutral-50 placeholder-gray-600 focus:outline-0"
           />
           <div className="mt-1.5 flex items-center justify-end gap-1.5">
             <button
@@ -80,7 +81,7 @@ export const AddCard = ({ column, setCards }) => {
         <motion.button
           layout
           onClick={() => setAdding(true)}
-          className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-neutral-50"
+          className="flex w-full items-center gap-1.5 px-3 py-1.5 text-xs text-neutral-400 transition-colors hover:text-green-500"
         >
           <span>Add card</span>
           <FaPlus />

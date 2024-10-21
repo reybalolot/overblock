@@ -1,6 +1,6 @@
 import { useState } from "react";
-import Trash from '../components/kanban/Trash.jsx';
 import { Card, AddCard, DropIndicator } from "../components/kanban/Card.jsx";
+import Trash from '../components/kanban/Trash.jsx';
 
 const Kanban = () => {
   const [cards, setCards] = useState(DEFAULT_CARDS);
@@ -8,16 +8,18 @@ const Kanban = () => {
   return (
     <>
       <div className="h-screen w-full bg-neutral-900 text-neutral-50">
-        <div className="p-2 m-2 text-accent font-bold bg-primary rounded">
-          Thursday, October 17, 2024
+        <div className="p-2 m-2 font-bold flex">
+          <div className="text-white">Kanban</div>
+          <div className="text-white mx-2">|</div>
+          <div className="text-tertiary">Thursday, October 17, 2024</div>
         </div>
-        <hr />
+        <hr className="mx-3"/>
         <div className="h-auto">
           <div className="grid xl:grid-cols-5 md:grid-cols-4 grid-cols-1 h-full w-full gap-3  overflow-y-scroll p-5 pt-3">
             <Column
               title="Notes"
               column="notes"
-              headingColor="text-neutral-500"
+              headingColor="text-neutral-300"
               cards={cards}
               setCards={setCards}
               />
@@ -175,7 +177,7 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         {column !== 'done' && column !== 'doing' ? (
           <AddCard column={column} setCards={setCards} />
         ) : (
-          <p className="text-center text-xs text-neutral-600">Drag card here</p>
+          <p className="text-center text-xs text-neutral-600">Drag card here 👆</p>
         )}
       </div>
     </div>
@@ -188,7 +190,7 @@ const DEFAULT_CARDS = [
   { title: "SOX compliance checklist", id: "2", column: "notes" },
   { title: "[SPIKE] Migrate to Azure", id: "3", column: "notes" },
   { title: "Document Notifications service", id: "4", column: "notes" },
-  { title: "Document Notifications service serviceserviceserviceserviceserviceser viceserviceserviceserviceserviceservice", id: "11", column: "notes" },
+  { title: "Document Notifications service", id: "11", column: "notes" },
   { title: "Document Notifications service", id: "12", column: "notes" },
   { title: "Document Notifications service", id: "13", column: "notes" },
   // TODO
