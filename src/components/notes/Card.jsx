@@ -4,24 +4,42 @@ import { MdOutlineDeleteOutline, MdOutlineEdit  } from "react-icons/md";
 import { useEffect, useState, useRef } from "react";
 
 
-export const Card = ({title, body}) => {
+export const Card = ({id, title, body, setCards}) => {
     const [ hovered, setHovered ] = useState(false);
-    const display = !hovered ? 'hidden' : 'flex';
+    const display = !hovered ? 'opacity-0' : 'ocapity-100';
+
+
+    const handleDelete = (e) => {
+        setCards((pv) => pv.filter((c) => c.id !== id ));
+    }
+
+    const handleMouseEnter = (e) => {
+        setHovered(true);
+    }
+
+
+    //framer variants
+    const cardVariants = {
+        hidden: {opacity: 0},
+        show: {opacity: 1}
+    }
+
 
     return (
         <>
-            <div className={`p-2 text-sm text-white rounded border border-neutral-700 bg-transparent break-inside-avoid my-2`}
-                onMouseEnter={() => setHovered(true)}
+            <motion.div className={`p-2 text-sm text-white rounded border border-neutral-700 bg-transparent break-inside-avoid my-2`}
+                onMouseEnter={handleMouseEnter}
                 onMouseLeave={() => setHovered(false)}
+                variants={cardVariants}
             >
                 <p className="my-2">{title}</p>
                 <p className="my-2 text-gray-500">{body}</p>
                 <motion.div  className="justify-end flex h-5">
-                    <button className={`${display} p-1 mx-0.5 rounded text-red-900 hover:bg-red-900 hover:text-white`}><MdOutlineDeleteOutline/></button>
-                    <button className={`${display} p-1 mx-0.5 rounded text-tertiary hover:bg-tertiary hover:text-white`}><MdOutlineEdit/></button>
+                    <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-red-900 hover:bg-red-900 hover:text-white`} onClick={handleDelete} ><MdOutlineDeleteOutline/></button>
+                    <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-tertiary hover:bg-tertiary hover:text-white`}><MdOutlineEdit/></button>
                     {/* <TbMenuDeep/> */}
                 </motion.div>
-            </div>
+            </motion.div>
         </>
     )
 }

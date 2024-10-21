@@ -7,6 +7,22 @@ import { FaPlus } from "react-icons/fa6";
 const Notes = () => {
     const [cards, setCards] = useState(DEFAULT_NOTES);
 
+
+
+    //framer variants
+    const gridContainerVariants = {
+      hidden: {
+        opacity:0
+      },
+      show: {
+        opacity: 1,
+        transition: {
+          staggerChildren: 0.07
+        }
+      }
+    }
+
+
     return (
         <>
         <div className="w-dvw h-full overflow-y-scroll">
@@ -15,13 +31,13 @@ const Notes = () => {
             <div className="text-white mx-2">|</div>
           </div>
           <hr className="mx-3"/>
-          <div className="p-3 columns-[300px] gap-2 h-auto">
+          <motion.div variants={gridContainerVariants} initial='hidden' animate='show' className="p-3 columns-[300px] gap-2 h-auto">
             <AddNote setCards={setCards}/>
               { cards.map((c) => {
-                return <Card key={c.id} {...c}/>
+                return <Card key={c.id} {...c} setCards={setCards}/>
               })
               }
-          </div>
+          </motion.div>
         </div>
         </>
     )
@@ -65,7 +81,7 @@ const AddNote = ({ setCards }) => {
     <>
       {adding ? (
         <div>
-        <motion.form layout onSubmit={handleSubmit} className="">
+        <motion.form layout onSubmit={handleSubmit} className="break-inside-avoid">
           <div className="text-sm border border-neutral-100 rounded p-2">
              <input
                 onChange={(e) => setTitle(e.target.value || ' ')}
