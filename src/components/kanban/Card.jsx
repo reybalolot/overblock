@@ -14,8 +14,12 @@ export const Card = ({ title, id, column, handleDragStart }) => {
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         layout
-        variants={cardVariants}
         layoutId={id}
+        variants={cardVariants}
+        whileHover={{
+          rotate: "-1.5deg",
+          scale: 1.01,
+        }}
         draggable="true"
         onDragStart={(e) => handleDragStart(e, { title, id, column })}
         className="cursor-grab md:w-auto rounded border border-neutral-700 bg-neutral-800 p-2 active:cursor-grabbing"

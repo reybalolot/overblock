@@ -30,7 +30,11 @@ export const Card = ({id, title, body, setCards}) => {
                 onMouseEnter={handleMouseEnter}
                 onMouseLeave={() => setHovered(false)}
                 variants={cardVariants}
-            >
+                whileHover={{
+                  rotate: "-1.07deg",
+                  scale: 1.01,
+                }}
+              >
                 <p className="my-2">{title}</p>
                 <p className="my-2 text-gray-500">{body}</p>
                 <motion.div  className="justify-end flex h-5">
