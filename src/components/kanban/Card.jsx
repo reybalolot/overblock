@@ -3,11 +3,18 @@ import { motion } from "framer-motion";
 import { FaPlus } from "react-icons/fa6";
 
 export const Card = ({ title, id, column, handleDragStart }) => {
+
+  const cardVariants = {
+    hidden: { opacity: 0 },
+    show: { opacity: 1 },
+  }
+
   return (
     <>
       <DropIndicator beforeId={id} column={column} />
       <motion.div
         layout
+        variants={cardVariants}
         layoutId={id}
         draggable="true"
         onDragStart={(e) => handleDragStart(e, { title, id, column })}

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Card, AddCard, DropIndicator } from "../components/kanban/Card.jsx";
+import { motion } from "framer-motion";
 import Trash from '../components/kanban/Trash.jsx';
 
 const Kanban = () => {
@@ -52,8 +53,21 @@ const Kanban = () => {
   );
 };
 
-const Column = ({ title, headingColor, cards, column, setCards }) => {
+const Column = ({ title, headingColor, cards, column, setCards, colVariants }) => {
   const [active, setActive] = useState(false);
+
+   //framer variants
+  const gridContainerVariants = {
+    hidden: {
+      opacity:0
+    },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.07
+      }
+    }
+  }
 
   const handleDragStart = (e, card) => {
     e.dataTransfer.setData("cardId", card.id);
@@ -155,6 +169,7 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
   const filteredCards = cards.filter((c) => c.column === column);
 
   return (
+
     <div className="w-auto shrink-0">
       <div className="mb-3 flex items-center justify-between">
         <h3 className={`font-medium ${headingColor}`}>{title}</h3>
@@ -162,10 +177,13 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
           {filteredCards.length}
         </span>
       </div>
-      <div
+      <motion.div
         onDrop={handleDragEnd}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
+        variants={gridContainerVariants}
+        initial='hidden'
+        animate='show'
         className={`w-full transition-colors ${
           active ? "bg-neutral-800/50" : "bg-neutral-800/0"
         }`}
@@ -179,7 +197,7 @@ const Column = ({ title, headingColor, cards, column, setCards }) => {
         ) : (
           <p className="text-center text-xs text-neutral-600">Drag card here 👆</p>
         )}
-      </div>
+      </motion.div>
     </div>
   );
 };

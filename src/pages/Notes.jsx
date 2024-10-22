@@ -1,5 +1,4 @@
 import { useEffect, useState, useRef } from "react";
-// import NoteCard from "../components/NoteCard";
 import { Card } from "../components/notes/Card.jsx";
 import { motion } from "framer-motion";
 import { FaPlus } from "react-icons/fa6";
@@ -49,6 +48,7 @@ const AddNote = ({ setCards }) => {
   const [adding, setAdding] = useState(false);
   const textAreaRef = useRef(null);
 
+  //handlers
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -66,6 +66,7 @@ const AddNote = ({ setCards }) => {
     setBody('');
   };
 
+  //useEffects
   useEffect(() => {
     const textarea = textAreaRef.current;
     const autoResize = () => {

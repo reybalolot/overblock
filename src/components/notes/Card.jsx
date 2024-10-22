@@ -17,7 +17,6 @@ export const Card = ({id, title, body, setCards}) => {
         setHovered(true);
     }
 
-
     //framer variants
     const cardVariants = {
         hidden: {opacity: 0},
