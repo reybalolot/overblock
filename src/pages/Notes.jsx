@@ -5,7 +5,7 @@ import { FaPlus, FaPen } from "react-icons/fa6";
 
 const Notes = () => {
     const [cards, setCards] = useState(DEFAULT_NOTES);
-    const cardConstraint = useRef()
+    // const cardConstraint = useRef()
 
     //framer variants
     const gridContainerVariants = {
@@ -36,12 +36,12 @@ const Notes = () => {
             variants={gridContainerVariants}
             initial='hidden'
             animate='show'
-            ref={cardConstraint}
+            // ref={cardConstraint}
             className="p-3 columns-[300px] gap-2 h-auto">
             <AddNote setCards={setCards}/>
             <AnimatePresence>
               { cards.map((c) => {
-                return <Card key={c.id} {...c} setCards={setCards} cardConstraints={cardConstraint}/>
+                return <Card key={c.id} {...c} setCards={setCards} />
               })
               }
             </AnimatePresence>

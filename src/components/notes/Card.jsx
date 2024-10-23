@@ -1,11 +1,13 @@
-import { motion, useDragControls } from "framer-motion";
+import { motion, useAnimate, useDragControls, usePresence } from "framer-motion";
 import { TbMenuDeep } from "react-icons/tb";
-import { MdOutlineDeleteOutline, MdOutlineEdit, MdDragIndicator } from "react-icons/md";
+import { MdOutlineDeleteOutline, MdOutlineEdit } from "react-icons/md";
 import { useEffect, useState, useRef } from "react";
 
 
-export const Card = ({id, title, body, setCards, cardConstraints}) => {
+export const Card = ({id, title, body, setCards, }) => {
     const [ hovered, setHovered ] = useState(false);
+    const [ isPresent, safeToDelete ]  = usePresence();
+    const [ scope, animate ] = useAnimate();
     const display = !hovered ? 'opacity-0' : 'opacity-100';
 
 
@@ -18,10 +20,27 @@ export const Card = ({id, title, body, setCards, cardConstraints}) => {
     }
 
     //framer variants
-    const cardVariants = {
+    const onloadVariants = {
         hidden: {opacity: 0},
         show: {opacity: 1}
     }
+
+    useEffect(() => {
+      if (!isPresent) {
+        const deleteAnimation = async () => {
+          await animate(scope.current,
+            { backgroundColor: '#dc2626', color: '#fefefe', scale: 0.9 },
+            { ease: 'easeIn', duration: 0.2 }
+          )
+          await animate(scope.current,
+            { opacity: 0, y: 5 },
+            { ease: 'easeIn', delay: 0.2 }
+          )
+          safeToDelete()
+        }
+        deleteAnimation()
+      }
+    }, [isPresent])
 
     return (
         <>
@@ -32,7 +51,8 @@ export const Card = ({id, title, body, setCards, cardConstraints}) => {
               // dragConstraints={cardConstraints}
               dragElastic={0}
               dragMomentum={false}
-              variants={cardVariants}
+              variants={onloadVariants}
+              ref={scope}
               whileDrag={{scale: 1.1, rotate: "-1.7deg", cursor: 'grabbing', zIndex: 999}}
               whileHover={{scale: 1.01,}}
               onMouseEnter={handleMouseEnter}
