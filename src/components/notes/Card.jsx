@@ -1,12 +1,12 @@
-import { motion } from "framer-motion";
+import { motion, useDragControls } from "framer-motion";
 import { TbMenuDeep } from "react-icons/tb";
-import { MdOutlineDeleteOutline, MdOutlineEdit  } from "react-icons/md";
+import { MdOutlineDeleteOutline, MdOutlineEdit, MdDragIndicator } from "react-icons/md";
 import { useEffect, useState, useRef } from "react";
 
 
-export const Card = ({id, title, body, setCards}) => {
+export const Card = ({id, title, body, setCards, cardConstraints}) => {
     const [ hovered, setHovered ] = useState(false);
-    const display = !hovered ? 'opacity-0' : 'ocapity-100';
+    const display = !hovered ? 'opacity-0' : 'opacity-100';
 
 
     const handleDelete = (e) => {
@@ -23,23 +23,24 @@ export const Card = ({id, title, body, setCards}) => {
         show: {opacity: 1}
     }
 
-
     return (
         <>
             <motion.div
               layout
-              className={`p-2 text-sm text-white rounded border border-neutral-700 bg-transparent break-inside-avoid my-2`}
+              drag
+              dragSnapToOrigin={true}
+              dragConstraints={cardConstraints}
+              dragElastic={0}
+              variants={cardVariants}
+              whileDrag={{scale: 1.1, rotate: "-1.7deg", cursor: 'grabbing', zIndex: 999}}
+              whileHover={{scale: 1.01,}}
               onMouseEnter={handleMouseEnter}
               onMouseLeave={() => setHovered(false)}
-              variants={cardVariants}
-              whileHover={{
-                rotate: "-1.07deg",
-                scale: 1.01,
-              }}
+              className={`p-1 text-sm text-white rounded border border-neutral-700 bg-neutral-900 break-inside-avoid my-2`}
               >
-                <p className="my-2">{title}</p>
-                <p className="my-2 text-gray-500">{body}</p>
-                <motion.div  className="justify-end flex h-5">
+                <p className="m-2">{title}</p>
+                <p className="m-2 text-gray-500">{body}</p>
+                <motion.div  className="justify-end flex h-5 mx-2">
                     <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-red-900 hover:bg-red-900 hover:text-white`} onClick={handleDelete} ><MdOutlineDeleteOutline/></button>
                     <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-tertiary hover:bg-tertiary hover:text-white`}><MdOutlineEdit/></button>
                     {/* <TbMenuDeep/> */}
