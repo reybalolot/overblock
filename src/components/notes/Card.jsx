@@ -9,11 +9,11 @@ export const Card = ({id, title, body, setCards, cardConstraints}) => {
     const display = !hovered ? 'opacity-0' : 'opacity-100';
 
 
-    const handleDelete = (e) => {
+    const handleDelete = () => {
         setCards((pv) => pv.filter((c) => c.id !== id ));
     }
 
-    const handleMouseEnter = (e) => {
+    const handleMouseEnter = () => {
         setHovered(true);
     }
 
@@ -29,8 +29,9 @@ export const Card = ({id, title, body, setCards, cardConstraints}) => {
               layout
               drag
               dragSnapToOrigin={true}
-              dragConstraints={cardConstraints}
+              // dragConstraints={cardConstraints}
               dragElastic={0}
+              dragMomentum={false}
               variants={cardVariants}
               whileDrag={{scale: 1.1, rotate: "-1.7deg", cursor: 'grabbing', zIndex: 999}}
               whileHover={{scale: 1.01,}}
@@ -40,7 +41,7 @@ export const Card = ({id, title, body, setCards, cardConstraints}) => {
               >
                 <p className="m-2">{title}</p>
                 <p className="m-2 text-gray-500">{body}</p>
-                <motion.div  className="justify-end flex h-5 mx-2">
+                <motion.div  className="justify-end flex h-5 mx-2 mb-2">
                     <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-red-900 hover:bg-red-900 hover:text-white`} onClick={handleDelete} ><MdOutlineDeleteOutline/></button>
                     <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-tertiary hover:bg-tertiary hover:text-white`}><MdOutlineEdit/></button>
                     {/* <TbMenuDeep/> */}

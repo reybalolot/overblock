@@ -37,12 +37,14 @@ const Notes = () => {
             initial='hidden'
             animate='show'
             ref={cardConstraint}
-            className="p-3 columns-[300px] gap-2 h-full grid-rows-subgrid">
+            className="p-3 columns-[300px] gap-2 h-auto">
             <AddNote setCards={setCards}/>
+            <AnimatePresence>
               { cards.map((c) => {
                 return <Card key={c.id} {...c} setCards={setCards} cardConstraints={cardConstraint}/>
               })
               }
+            </AnimatePresence>
           </motion.div>
         </div>
         </>
@@ -62,9 +64,7 @@ const AddNote = ({ setCards }) => {
       height: 'auto',
       transition: {
         type: 'tween',
-        ease: 'easeIn',
-        // staggerChildren: 0.08
-        // delay: 0.19,
+        ease: 'easeIn'
       }
     },
     closed: {
@@ -73,11 +73,31 @@ const AddNote = ({ setCards }) => {
       transition: {
         type: 'tween',
         ease: 'easeIn',
-        // staggerChildren: 1,
         delay: 0.09,
       }
     },
   };
+
+  const buttonVariants = {
+    hidden: {
+      opacity: 0,
+      width: 0,
+      transition: {
+        type: 'keyframe',
+        ease: 'easeIn',
+        duration: 0.9
+      }
+    },
+    show: {
+      opacity: 1,
+      width: '100%',
+      transition: {
+        type: 'keyframe',
+        ease: 'easeIn',
+        delay: 0.09
+      }
+    }
+  }
 
   //handlers
   const handleSubmit = (e) => {
@@ -113,34 +133,36 @@ const AddNote = ({ setCards }) => {
   return (
     <>
       <div className="break-inside-avoid">
+      <AnimatePresence>
       <div className="flex gap-1">
-       <motion.button
-          whileHover={{
-            scale: 0.99,
-          }}
-          layout
+        {adding ? (
+        <motion.button
+          whileHover={{scale: 0.99}}
+          onClick={handleSubmit}
+          className="flex w-full items-center gap-2.5 px-3 p-3 mb-2 text-xs rounded transition-all ease-in-out duration-300 border border-green-600 text-green-400 hover:border-green-700 hover:bg-green-600 hover:text-white"
+          >
+          <motion.span
+          initial={buttonVariants.hidden}
+          animate={buttonVariants.show}
+          exit={buttonVariants.hidden}
+          className="flex flex-row gap-2">
+            Save
+            <FaPen/>
+            </motion.span>
+        </motion.button>
+          ) : (null)
+        }
+        <motion.button
+          whileHover={{scale: 0.99}}
           onClick={() => setAdding(is => !is)}
           className={`flex w-full items-center gap-2.5 px-3 p-3 mb-2 text-xs rounded transition-all ease-in-out duration-300 border ${adding? 'border-red-600 text-red-400 hover:border-red-700 hover:bg-red-600 hover:text-white' : 'border-yellow-600 text-yellow-400 hover:border-yellow-700 hover:bg-yellow-600 hover:text-white' }`}
           >
           <span className="transition ease-out duration-300">{adding ? 'Close' : 'Add note'}</span>
           <FaPlus className={`transition-transform ${adding ? "rotate-45" : "rotate-0"}`}/>
         </motion.button>
-          {adding ? (
-            <motion.button
-            whileHover={{
-              scale: 0.99,
-            }}
-            layout
-            onClick={handleSubmit}
-            className="flex w-full items-center gap-2.5 px-3 p-3 mb-2 text-xs rounded transition-all ease-in-out duration-300 border border-green-600 text-green-400 hover:border-green-700 hover:bg-green-600 hover:text-white"
-            >
-            <span>Save</span>
-            <FaPen/>
-          </motion.button>
-          ) : (null)
-          }
-        </div>
-        <AnimatePresence>
+      </div>
+      </AnimatePresence>
+      <AnimatePresence>
         {adding ? (
           <motion.form
             layout
@@ -164,14 +186,6 @@ const AddNote = ({ setCards }) => {
                 placeholder="New note..."
                 className="w-full bg-transparent m-2 text-neutral-50 placeholder-yellow-100/30 focus:outline-0 resize-none"
                 />
-            {/* <div className="mt-1.5 flex items-center justify-start gap-1.5">
-              <button
-                type="submit"
-                className="flex items-center gap-1.5 rounded bg-green-900 px-3 py-1.5 text-xs text-neutral-950 transition-colors hover:text-neutral-300 hover:bg-green-700"
-                >
-                <span>Save</span>
-              </button>
-            </div> */}
           </div>
           </motion.form>
           ) : (
