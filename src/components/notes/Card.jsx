@@ -26,14 +26,16 @@ export const Card = ({id, title, body, setCards}) => {
 
     return (
         <>
-            <motion.div className={`p-2 text-sm text-white rounded border border-neutral-700 bg-transparent break-inside-avoid my-2`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={() => setHovered(false)}
-                variants={cardVariants}
-                whileHover={{
-                  rotate: "-1.07deg",
-                  scale: 1.01,
-                }}
+            <motion.div
+              layout
+              className={`p-2 text-sm text-white rounded border border-neutral-700 bg-transparent break-inside-avoid my-2`}
+              onMouseEnter={handleMouseEnter}
+              onMouseLeave={() => setHovered(false)}
+              variants={cardVariants}
+              whileHover={{
+                rotate: "-1.07deg",
+                scale: 1.01,
+              }}
               >
                 <p className="my-2">{title}</p>
                 <p className="my-2 text-gray-500">{body}</p>

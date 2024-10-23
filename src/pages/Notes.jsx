@@ -14,7 +14,9 @@ const Notes = () => {
       show: {
         opacity: 1,
         transition: {
-          staggerChildren: 0.07
+          duration: .1,
+          staggerChildren: 0.08,
+          ease: 'linear',
         }
       }
     }

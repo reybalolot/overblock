@@ -46,8 +46,8 @@ function App() {
         <Router>
         <SideBar/>
           <Routes>
-            <Route path='/' element={<Daily/>}/>
-            <Route path='/daily' element={<Daily/>}/>
+            <Route path='/' element={<Notes/>}/>
+            <Route path='/calendar' element={<Daily/>}/>
             <Route path='/notes' element={<Notes/>}/>
             <Route path='/kanban' element={<Kanban/>}/>
           </Routes>

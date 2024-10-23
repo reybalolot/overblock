@@ -42,9 +42,9 @@ const SideBar = () => {
                 </button>
                 <div className="border mx-3 mb-2"></div>
                 <div className="flex flex-col flex-grow space-y-2 m-0 anim-300" style={{width:toggle?'200px':'0px'}}>
+                    {/* <SideBarNav link={'/calendar'} icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/> */}
                     <SideBarNav link={'/kanban'} icon={<TbLayoutKanbanFilled size={'20'}/>} label={'Kanban'} isHidden={toggle}/>
                     <SideBarNav link={'/notes'} icon={<MdEditDocument size={'20'}/>} label={'Notes'} isHidden={toggle}/>
-                    {/* <SideBarNav link={'/calendar'} icon={<MdOutlineCalendarMonth size={'20'}/>} label={'Calendar'} isHidden={toggle}/> */}
                     {/* <SideBarNav link={'/daily'} icon={<MdOutlineStar  size={'20'}/>} label={'Daily'} isHidden={toggle}/> */}
                     {/* <SideBarNav link={'/kanban'} icon={<MdDoneAll size={'20'}/>} label={'Checklist'} isHidden={toggle}/> */}
                     {/* <SideBarNav link={'/kanban'} icon={<MdFilePresent size={'20'}/>} label={'Attachments'} isHidden={toggle}/> */}
