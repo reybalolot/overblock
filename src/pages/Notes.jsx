@@ -37,7 +37,7 @@ const Notes = () => {
             initial='hidden'
             animate='show'
             // ref={cardConstraint}
-            className="p-3 columns-[300px] gap-2 h-auto">
+            className="p-3 columns-[400px] gap-2 h-auto">
             <AddNote setCards={setCards}/>
             <AnimatePresence>
               { cards.map((c) => {
