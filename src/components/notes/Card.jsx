@@ -21,8 +21,8 @@ export const Card = ({id, title, body, setCards, }) => {
 
     //framer variants
     const onloadVariants = {
-        hidden: {opacity: 0},
-        show: {opacity: 1}
+        hidden: {opacity: 0, transition: {type: 'keyframe'}},
+        show: {opacity: 1, transition: {type: 'keyframe'}}
     }
 
     useEffect(() => {
@@ -62,15 +62,20 @@ export const Card = ({id, title, body, setCards, }) => {
               { editting ? (
                 <EditNote id={id} title={title} body={body} setEditting={setEditting} setCards={setCards}/>
                 ) : (
-                  <div className="m-2">
-                    <p>{title}</p>
-                    <p className="text-gray-500">{body}</p>
-                    <motion.div  className="justify-end flex h-5 mt-1">
+                  <motion.div
+                    layout
+                    initial={{transition: {type:'keyframes', ease: 'easeIn'}}}
+                    animate={{transition: {type:'keyframes', ease: 'easeIn'}}}
+                    exit={{transition: {type:'keyframes', ease: 'easeIn'}}}
+                    className="m-2">
+                      <p>{title}</p>
+                      <p className="text-gray-500">{body}</p>
+                    <motion.div className="justify-end flex h-5 mt-1">
                       <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-red-900 hover:bg-red-900 hover:text-white`} onClick={handleDelete} ><MdOutlineDeleteOutline/></button>
                       <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-tertiary hover:bg-tertiary hover:text-white`} onClick={() => setEditting(true)} ><MdOutlineEdit/></button>
                       {/* <TbMenuDeep/> */}
                     </motion.div>
-                  </div>
+                  </motion.div>
                 )}
             </motion.div>
         </>
@@ -91,7 +96,11 @@ const EditNote = ({ id, title, body, setEditting, setCards }) => {
         return c;
       })
     );
-    setEditting(false); // Close the editing form after saving
+    setEditting(false);
+  }
+
+  const handleBlur = () => {
+    setEditting(false)
   }
 
   return (
@@ -100,12 +109,14 @@ const EditNote = ({ id, title, body, setEditting, setCards }) => {
         <input
           value={newTitle}
           onChange={(e) => setNewTitle(e.target.value || ' ')}
+          onBlur={handleBlur}
           placeholder="..."
           className="w-full bg-transparent text-neutral-50 placeholder-gray-600 focus:outline-0"
         />
         <textarea
           value={newBody}
           onChange={(e) => setNewBody(e.target.value)}
+          onBlur={handleBlur}
           autoFocus
           placeholder="..."
           className="w-full bg-transparent text-neutral-50 placeholder-gray-600 focus:outline-0 resize-none"
