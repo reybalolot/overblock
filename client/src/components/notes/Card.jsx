@@ -70,7 +70,7 @@ export const Card = ({id, title, body, setCards, }) => {
                     className="m-2">
                       <p>{title}</p>
                       <p className="text-gray-500">{body}</p>
-                    <motion.div className="justify-end flex h-5 mt-1">
+                    <motion.div   className="justify-end flex h-5 mt-1">
                       <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-red-900 hover:bg-red-900 hover:text-white`} onClick={handleDelete} ><MdOutlineDeleteOutline/></button>
                       <button className={`${display} transition delay-200 ease-in p-1 mx-0.5 rounded text-tertiary hover:bg-tertiary hover:text-white`} onClick={() => setEditting(true)} ><MdOutlineEdit/></button>
                       {/* <TbMenuDeep/> */}
