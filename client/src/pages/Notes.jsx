@@ -198,7 +198,7 @@ const AddNote = ({ setCards }) => {
 }
 
 const DEFAULT_NOTES = [
-    {id: '1', title: 'Note #1', body: 'This is the content on a note'},
+    {id: '1', title: 'Work your way around time', body: 'https://www.youtube.com/watch?v=lQFOeC3maeI'},
     {id: '2', title: 'Note #2', body: 'This is the content'},
     {id: '3', title: 'Note title', body: 'This is the content'},
     {id: '4', title: 'Note title', body: 'This is the content'},
